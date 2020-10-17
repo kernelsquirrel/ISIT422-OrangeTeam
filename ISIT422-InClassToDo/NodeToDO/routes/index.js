@@ -56,4 +56,44 @@ router.post('/NewToDo', function(req, res) {
   });
 });
 
+<<<<<<< HEAD
+=======
+/* GET all Todos . */
+router.get('/ToDos', function(req, res) {
+  // find {  takes values, but leaving it blank gets all}
+  ToDos.find({}, (err, AllToDos) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    res.status(200).json(AllToDos);
+  });
+});
+
+// delete one ToDo
+router.delete('/DeleteToDo/:id', function (req, res) {
+  ToDos.deleteOne({ _id: req.params.id }, (err, note) => { 
+    if (err) {
+      res.status(404).send(err);
+    }
+    res.status(200).json({ message: "ToDo successfully deleted" });
+  });
+});
+
+// update one ToDo
+router.put('/CompleteToDo', function (req, res) {
+  var which = (req.body)._id;   // get the -id from the object passed up, ignore rest of it
+  ToDos.findOneAndUpdate(
+    { _id: which },  
+    { completed: true },   // ignore the value of the object's completed prop, just force it to true
+    { new: false }, // if it does not find one, do not just make up a new one.
+    (err, todo) => {
+      if (err) {
+        res.status(500).send(err);
+    }
+    res.status(200).json(todo);
+    })
+  });
+
+>>>>>>> 5c5cba758bbba122cfb7465654e4242271449aed
 module.exports = router;
