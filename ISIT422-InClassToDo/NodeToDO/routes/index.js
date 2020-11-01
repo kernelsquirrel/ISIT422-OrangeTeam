@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
-
 // mongoose is a API wrapper overtop of mongodb, just like
 // .ADO.Net is a wrapper over raw SQL server interface
 const mongoose = require("mongoose");
@@ -58,46 +56,45 @@ router.post('/NewToDo', function(req, res) {
 //************************************************************ */
 
 // for this version, we will keep data on server in an array
-heroArray = [];
+armorArray = [];
 
 //constructor
-function Hero(pId, pName, pPower) {
-  this.id= pId;
+function Armor(pId, pName, pRating, pStrength, pDefense,pSpeed) {
+  this.id = pId;
   this.name = pName;
-  this.power = pPower;
+  this.rating = pRating;
+  this.strength = pStrength;
+  this.defense = pDefense;
+  this.speed = pSpeed;
   }
 
   // pre-populate with some data
-heroArray.push( new Hero (11, 'Dr Nice', "Fire") );
-heroArray.push( new Hero (12, 'Narco', "Invisible") );
-heroArray.push( new Hero (13, 'Bombasto', "Fire") );
-heroArray.push( new Hero (14, 'Celeritas',"X-Ray Vision") );
-heroArray.push( new Hero (15, 'Magneta', "Invisible") );
-heroArray.push( new Hero (16, 'RubberMan',"X-Ray Vision") );
-heroArray.push( new Hero (17, 'Dynama', "Invisible") );
-heroArray.push( new Hero (18, 'Dr IQ', "X-Ray Vision") );
-heroArray.push( new Hero (19, 'Magma', "Fire") );
-heroArray.push( new Hero (20, 'Tornado', "Invisible") );
-
+armorArray.push( new Armor (111, 'Reinforced clothing', "1/0", 1 , 0 , 0) );
+armorArray.push( new Armor (112, 'Kevlar vest', "1/3", 1, 0, 0) );
+armorArray.push( new Armor (113, 'Flak Jacket', "2/4", 1, -1, 0) );
+armorArray.push( new Armor (114, 'Full Riot Gear', "3/5", 2, -2, -1) );
+armorArray.push( new Armor (115, 'Leather hard',"2/0", 2, -1, 0) );
+armorArray.push( new Armor (116, 'Chainmail',"3/1", 3, -2, -2) );
+armorArray.push( new Armor (117, 'Plate',"4/2", 3, -2, -3) );
 
 router.get('/heroes', function(req, res) {
-  res.status(200).json(heroArray);
-    console.log(heroArray);
+  res.status(200).json(armorArray);
+    console.log(armorArray);
 });
 
 router.get('/heroes/:id', function(req, res) {
   let found = false;
-    for(var i=0; i < heroArray.length; i++)
+    for(var i=0; i < armorArray.length; i++)
     {
-      if( heroArray[i].id == req.params.id)
+      if( armorArray[i].id == req.params.id)
       {
-        console.log(heroArray[i]);
+        console.log(armorArray[i]);
         found = true
-        res.status(200).json(heroArray[i]);
+        res.status(200).json(armorArray[i]);
       }
     }
     if(found === false){
-      res.status(500).send("no such hero");
+      res.status(500).send("no such armor");
       }
 
   });
@@ -105,16 +102,19 @@ router.get('/heroes/:id', function(req, res) {
 
 
   router.put('/heroes/:id', function(req, res) {
-    var changedHero = req.body; 
-   for(var i=0; i < heroArray.length; i++)
+    var changedArmor = req.body; 
+   for(var i=0; i < armorArray.length; i++)
    {
-     if( heroArray[i].id == req.params.id)
+     if( armorArray[i].id == req.params.id)
      {
-       heroArray[i].name = changedHero.name;
-       heroArray[i].power = changedHero.power;
-       console.log(heroArray[i]);
+       armorArray[i].name = changedArmor.name;
+       armorArray[i].rating = changedArmor.rating;
+       armorArray[i].strength = changedArmor.strength;
+       armorArray[i].defense = changedArmor.defense;
+       armorArray[i].speed = changedArmor.speed;
+       console.log(armorArray[i]);
        found = true
-       res.status(200).json(heroArray[i]);
+       res.status(200).json(armorArray[i]);
      }
    }
    if(found === false){
@@ -126,13 +126,13 @@ router.get('/heroes/:id', function(req, res) {
 
 // delete is used to delete existing object
 router.delete('/heroes/:id', function(req, res) {
-  for(var i=0; i < heroArray.length; i++)
+  for(var i=0; i < armorArray.length; i++)
   {
-    if( heroArray[i].id == req.params.id)
+    if( armorArray[i].id == req.params.id)
     {
-      heroArray.splice(i,1);
+      armorArray.splice(i,1);
       found = true
-      res.status(200).json('deleted hero');
+      res.status(200).json('deleted armor');
     }
   }
   if(found === false){
@@ -145,13 +145,13 @@ router.delete('/heroes/:id', function(req, res) {
 router.post("/heroes", function(req, res) {
 
    // sort by id (need to create a new, unique id)
-   heroArray.sort(function(a, b) {
+   armorArray.sort(function(a, b) {
     return (a.id) - (b.id);
    });
-   var newID = (heroArray[heroArray.length-1].id) +1;
-   var newHero = new Hero(newID, req.body.name, req.body.power);  // need to fix !!!!!
-   heroArray.push(newHero);
-   res.status(200).json(newHero);  // returns the new hero which the observable 
+   var newID = (armorArray[armorArray.length-1].id) +1;
+   var newArmor = new Armor(newID, req.body.name, req.body.rating, reg.body.strength, reg.body.defense, reg.body.speed);  // need to fix !!!!!
+   armorArray.push(newArmor);
+   res.status(200).json(newArmor);  // returns the new hero which the observable 
   // uses to update the client side array so the display looks correct.
 });
 
@@ -159,15 +159,15 @@ router.post("/heroes", function(req, res) {
 // router.post("/heroes", function(req, res) {
 
 //   // sort by id (need to create a new, unique id)
-//   heroArray.sort(function(a, b) {
+//   armorArray.sort(function(a, b) {
 //    return (a.id) - (b.id);
 //   });
-//  var newID = (heroArray[heroArray.length-1].id) +1;
+//  var newID = (armorArray[armorArray.length-1].id) +1;
 
-//  var newHero = req.body;
-//  newHero.id = newID;
-//  heroArray.push(newHero);
-//  res.status(200).json(newHero);  // returns the new hero which the observable 
+//  var newArmor = req.body;
+//  newArmor.id = newID;
+//  armorArray.push(newArmor);
+//  res.status(200).json(newArmor);  // returns the new hero which the observable 
 //  // uses to update the client side array so the display looks correct.
 // });
 
