@@ -77,12 +77,12 @@ armorArray.push( new Armor (115, 'Leather hard',"2/0", 2, -1, 0) );
 armorArray.push( new Armor (116, 'Chainmail',"3/1", 3, -2, -2) );
 armorArray.push( new Armor (117, 'Plate',"4/2", 3, -2, -3) );
 
-router.get('/heroes', function(req, res) {
+router.get('/armor', function(req, res) {
   res.status(200).json(armorArray);
     console.log(armorArray);
 });
 
-router.get('/heroes/:id', function(req, res) {
+router.get('/armor/:id', function(req, res) {
   let found = false;
     for(var i=0; i < armorArray.length; i++)
     {
@@ -101,7 +101,7 @@ router.get('/heroes/:id', function(req, res) {
 
 
 
-  router.put('/heroes/:id', function(req, res) {
+  router.put('/armor/:id', function(req, res) {
     var changedArmor = req.body; 
    for(var i=0; i < armorArray.length; i++)
    {
@@ -125,7 +125,7 @@ router.get('/heroes/:id', function(req, res) {
 
 
 // delete is used to delete existing object
-router.delete('/heroes/:id', function(req, res) {
+router.delete('/armor/:id', function(req, res) {
   for(var i=0; i < armorArray.length; i++)
   {
     if( armorArray[i].id == req.params.id)
@@ -142,7 +142,7 @@ router.delete('/heroes/:id', function(req, res) {
 
 
 
-router.post("/heroes", function(req, res) {
+router.post("/armor", function(req, res) {
 
    // sort by id (need to create a new, unique id)
    armorArray.sort(function(a, b) {
