@@ -1,0 +1,21 @@
+<h2>List of Armors </h2>
+<ul class="heroes">
+  <li *ngFor="let armor of armor "
+    [class.selected]="armor=== selectedArmor"
+    (click)="onSelect(armor)">
+    <span class="badge">{{armor.id}}</span> {{armor.name}}, {{armor.rating}}, {{armor.strength}}
+    {{armor.defense}}, {{armor.speed}}
+  </li>
+</ul>
+
+<div *ngIf="selectedArmor">
+
+  <h2>{{selectedArmor.name | uppercase}} Armor Details</h2>
+  <div><span>id: </span>{{selectedArmor.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedArmor.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>
