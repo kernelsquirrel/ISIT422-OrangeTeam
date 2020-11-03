@@ -11,11 +11,15 @@
 <div *ngIf="selectedArmor">
 
   <h2>{{selectedArmor.name | uppercase}} Armor Details</h2>
-  <div><span>id: </span>{{selectedArmor.id}}</div>
+  <div><span>id:  </span>{{selectedArmor.id}}</div>
   <div>
     <label>name:
       <input [(ngModel)]="selectedArmor.name" placeholder="name"/>
     </label>
-  </div>
+</div>
 
+</div>
+
+<div>
+<img class="image" [src] ="myimage">
 </div>

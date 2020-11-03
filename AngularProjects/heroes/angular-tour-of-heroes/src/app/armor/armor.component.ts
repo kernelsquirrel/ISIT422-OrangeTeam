@@ -11,7 +11,10 @@ export class ArmorComponent implements OnInit {
 
 
   armor = ARMORS;
-  selectedArmor:Armor;
+
+selectedArmor:Armor;
+
+  myimage:string="assets/images/im2.jpeg";
 
   constructor() { }
 
