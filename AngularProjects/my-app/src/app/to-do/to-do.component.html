@@ -1,0 +1,30 @@
+<div class="boxed">
+    <h2>My To Do Items</h2>
+
+
+    <ul class="todoitems">
+        <li *ngFor="let ToDoPlaceholder of TheToDos"
+            (click)="onSelect(ToDoPlaceholder)"
+            [class.selected]="ToDoPlaceholder === selectedToDoItem">
+            <span class="badge">{{ToDoPlaceholder.title}}</span> {{ToDoPlaceholder.priority}}
+        </li>
+     </ul>
+     
+
+    <div *ngIf="selectedToDoItem">
+    <h2>{{selectedToDoItem.title | uppercase}} </h2>
+   <div>
+       <label>Title:
+           <input [(ngModel)]="selectedToDoItem.title">
+       </label><br />
+       <label>Priority:
+           <input [(ngModel)]="selectedToDoItem.priority">
+       </label><br />
+       <label>Detail:
+               <input [(ngModel)]="selectedToDoItem.detail">
+       </label>
+   </div>
+ </div>
+ </div>
+ 
+ 
