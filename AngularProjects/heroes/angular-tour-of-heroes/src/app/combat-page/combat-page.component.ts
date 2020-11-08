@@ -8,14 +8,8 @@ import {Armor} from '../armordet';
 })
 export class CombatPageComponent implements OnInit {
 
-  selectedArmor:Armor;
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onSelect(armor: Armor): void {
-    this.selectedArmor = armor;
   }
 }

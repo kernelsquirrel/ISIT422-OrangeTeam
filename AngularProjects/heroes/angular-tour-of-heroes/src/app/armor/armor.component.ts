@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Armor } from '../armordet';
 import { ArmorService } from '../armor.service';
 
 @Component({
-  selector: 'app-armor',
+  selector: 'tr[app-armor]',
   templateUrl: './armor.component.html',
   styleUrls: ['./armor.component.css']
 })
 export class ArmorComponent implements OnInit {
   armors: Armor[];
 
-  selectedArmor:Armor;
+  // selectedArmor:Armor;
 
-  myimage:string="assets/images/im2.jpeg";
+  // myimage:string="assets/images/im2.jpeg";
 
   constructor(private armorService: ArmorService) { }
 
@@ -21,9 +21,9 @@ export class ArmorComponent implements OnInit {
     this.getArmors();
   }
 
-  onSelect(armor: Armor): void {
-    this.selectedArmor = armor;
-  }
+  // onSelect(armor: Armor): void {
+  //   this.selectedArmor = armor;
+  // }
 
   getArmors(): void {
     this.armorService.getArmors()
@@ -32,10 +32,16 @@ export class ArmorComponent implements OnInit {
 
   selectedItem: Armor;
 
-  selectChangeHandler (event: any) {
-    // this.selectedItem = event.target.value;
+  armorRating: number;
+  armorStrength: number;
+  armorDefense: number;
+  armorSpeed: number;
 
-    let found = this.armors.find(element => element.name > event.target.value);
-    this.selectedItem = found;
+  selectChangeHandler (event: any) {
+    this.selectedItem = this.armors.find(element => element.name === event.target.value);
+    this.armorRating = this.selectedItem.rating;
+    this.armorStrength = this.selectedItem.strength;
+    this.armorDefense = this.selectedItem.defense;
+    this.armorSpeed = this.selectedItem.speed;
   }
 }

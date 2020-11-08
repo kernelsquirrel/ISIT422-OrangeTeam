@@ -1,24 +1,55 @@
-<h2>List of Armors </h2>
+<!-- <h2>List of Armors </h2> -->
 
-<ul class="heroes">
+<!-- <ul class="heroes">
   <li *ngFor="let armor of armors">
     <a routerLink="/detail/{{armor.id}}">
       <span class="badge">{{armor.id}}</span> {{armor.name}} {{armor.rating}} {{armor.strength}} {{armor.defense}} {{armor.speed}}
     </a>
   </li>
-</ul>
+</ul> -->
 
-<select (change)="selectChangeHandler($event)">
+<!-- <select (change)="selectChangeHandler($event)">
   <option></option>
-  <!-- <option *ngFor="let armor of armors"> -->
-  <!-- <option *ngFor="let armor of armors" [value]="armor.name" [selected]="armor.selected == true">{{armor.selected+armor.value}} -->
   <option *ngFor="let armor of armors" [ngValue]="armor">{{armor.name}}
   </option>
 </select>
 
 <h2><span>Select an item:</span></h2>
-<p><span>You selected: </span><b>{{selectedItem}}</b></p>
+<p>
+  <span>You selected: </span> <b>{{armorName}} {{armorRating}} {{armorStrength}} {{armorDefense}} {{armorSpeed}} </b>
+</p> -->
 
-<div>
+<!-- <table>
+  <tr>
+      <th>Name</th>
+      <th>Rating</th>
+      <th>Strength</th>
+      <th>Defense</th>
+      <th>Speed</th>
+  </tr>
+  <tr>
+    <select (change)="selectChangeHandler($event)">
+      <option></option>
+      <option *ngFor="let armor of armors" [ngValue]="armor">{{armor.name}}
+      </option>
+    </select>
+    <td>{{armorRating}}</td>
+    <td>{{armorStrength}}</td>
+    <td>{{armorDefense}}</td>
+    <td>{{armorSpeed}}</td>
+  </tr>
+</table> -->
+
+<select (change)="selectChangeHandler($event)">
+  <option></option>
+  <option *ngFor="let armor of armors" [ngValue]="armor">{{armor.name}}
+  </option>
+</select>
+<td>{{armorRating}}</td>
+<td>{{armorStrength}}</td>
+<td>{{armorDefense}}</td>
+<td>{{armorSpeed}}</td>
+
+<!-- <div>
 <img class="image" [src] ="myimage">
-</div>
+</div> -->
