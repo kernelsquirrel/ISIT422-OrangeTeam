@@ -11,6 +11,7 @@ import { ArmorComponent } from './armor/armor.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CombatPageComponent } from './combat-page/combat-page.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    CombatPageComponent
   ],
   bootstrap: [ AppComponent ]
 })

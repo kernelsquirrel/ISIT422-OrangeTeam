@@ -1,24 +1,23 @@
 <h2>List of Armors </h2>
+
 <ul class="heroes">
-  <li *ngFor="let armor of armor "
-    [class.selected]="armor=== selectedArmor"
-    (click)="onSelect(armor)">
-    <span class="badge">{{armor.id}}</span> {{armor.name}}, {{armor.rating}}, {{armor.strength}}
-    {{armor.defense}}, {{armor.speed}}
+  <li *ngFor="let armor of armors">
+    <a routerLink="/detail/{{armor.id}}">
+      <span class="badge">{{armor.id}}</span> {{armor.name}} {{armor.rating}} {{armor.strength}} {{armor.defense}} {{armor.speed}}
+    </a>
   </li>
 </ul>
 
-<div *ngIf="selectedArmor">
+<select (change)="selectChangeHandler($event)">
+  <option></option>
+  <!-- <option *ngFor="let armor of armors"> -->
+  <!-- <option *ngFor="let armor of armors" [value]="armor.name" [selected]="armor.selected == true">{{armor.selected+armor.value}} -->
+  <option *ngFor="let armor of armors" [ngValue]="armor">{{armor.name}}
+  </option>
+</select>
 
-  <h2>{{selectedArmor.name | uppercase}} Armor Details</h2>
-  <div><span>id:  </span>{{selectedArmor.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedArmor.name" placeholder="name"/>
-    </label>
-</div>
-
-</div>
+<h2><span>Select an item:</span></h2>
+<p><span>You selected: </span><b>{{selectedItem}}</b></p>
 
 <div>
 <img class="image" [src] ="myimage">
